@@ -37,9 +37,10 @@ button{
     margin-top: 20px;
 }
 
-
 .register span{
     font-family: 'Ubuntu-Bold';
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .register{
