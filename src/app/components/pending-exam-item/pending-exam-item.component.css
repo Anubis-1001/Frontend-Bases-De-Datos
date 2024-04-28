@@ -18,6 +18,8 @@ h3{
 h2{
     font-size: 17px;
     font-family: 'Ubuntu-Light';
+    border-left: 1px solid rgb(108, 95, 255);
+    border-right: 1px solid rgb(108, 95, 255);
 }
 button{
     width: 70%;
