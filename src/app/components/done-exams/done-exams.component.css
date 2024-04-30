@@ -9,8 +9,9 @@
 }
 
 #scroll{
-    max-height: 270px;
+    max-height: 600px;
     overflow-y: auto;
+    min-height: 600px;
 }
 
 h2{
