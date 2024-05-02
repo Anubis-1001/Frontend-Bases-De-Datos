@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
@@ -12,6 +13,7 @@ export class ForgotPasswordComponent {
 
   @ViewChild('email') email!: ElementRef;
   validMail: boolean = true;
+  constructor(private router: Router) { }
 
   validateMail() {
     const emailField = this.email.nativeElement;
@@ -21,6 +23,7 @@ export class ForgotPasswordComponent {
 
     if (emailValue.match(emailRegex)) {
       this.validMail = true;
+      this.router.navigate(['/recovery-code'])
     } else {
       this.validMail = false;
     }

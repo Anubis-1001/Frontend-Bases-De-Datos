@@ -4,6 +4,9 @@ import { DefaultViewComponent } from './views/default-view/default-view.componen
 import { HomeComponent } from './views/home/home.component';
 import { ExamsComponent } from './views/exams/exams.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { CodigoPasswordComponent } from './codigo-password/codigo-password.component';
+import { InformacionCursoComponent } from './views/informacion-curso/informacion-curso.component';
+
 
 export const routes: Routes = [
     { path: 'sign-in', component: SignInComponent },
@@ -11,4 +14,6 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent},
     { path: 'exams', component: ExamsComponent},
     { path: 'forgot-password', component: ForgotPasswordComponent},
+    { path: 'recovery-code', component: CodigoPasswordComponent},
+    { path: 'info-curso', component: InformacionCursoComponent},
 ];

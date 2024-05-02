@@ -1,13 +1,14 @@
 #container{
     height: 100vh;
-    width: 250px;
+    width: 15vw;
+    position: fixed;
     background-color: rgb(74, 58, 255);
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     padding-top: 30px;
 }
 h2{
-    font-size: 20px;
+    font-size: 2em;
     font-family: 'Ubuntu-Bold';
 }
 
@@ -19,12 +20,16 @@ h4{
 }
 
 .elements{
-    margin-top: 80px;
+    margin-bottom: 30px;
 }
 
 #logout{
-    margin-top: 700px;
+    margin-bottom: 80px;
     font-size: 17px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
     font-family: 'Ubuntu-Light';
     cursor: pointer;
 }
@@ -41,3 +46,4 @@ h4:hover{
     box-shadow: inset;
 
 }
+
