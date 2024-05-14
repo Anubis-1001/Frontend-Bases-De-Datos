@@ -5,7 +5,9 @@
     </div>
     <div class="col-lg-10 col-md-9">
         <app-nav-bar/>
-        <h1 class="text-start"> Cursos </h1>
+
+        @if(true){
+            <h1 class="text-start"> Cursos </h1>
         <p>Bienvenido de vuelta, Mclovin</p>
 
         
@@ -16,5 +18,9 @@
                 </div>
             } 
         </div>
+        }@else {
+            <app-pending-exam/>
+        }
+        
     </div>
 </div>

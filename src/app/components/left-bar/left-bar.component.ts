@@ -10,4 +10,16 @@ import { Component } from '@angular/core';
 })
 export class LeftBarComponent {
 
+  constructor(private leftService:LeftBarComponent){
+
+  }
+
+
+  seeCourses(){
+    this.leftService.seeCourses();
+  }
+
+  seePendingExams(){
+    this.leftService.seePendingExams();
+  }
 }
