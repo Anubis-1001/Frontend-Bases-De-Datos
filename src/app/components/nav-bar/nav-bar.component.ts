@@ -1,13 +1,19 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
   imports: [NgOptimizedImage, CommonModule],
   templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.css'
+  styleUrl: './nav-bar.component.css',
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
+  @Input('style') style!: string;
 
+  ngOnInit(): void {
+    if (!this.style) {
+      this.style = '';
+    }
+  }
 }
