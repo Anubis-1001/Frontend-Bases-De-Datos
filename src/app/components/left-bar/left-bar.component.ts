@@ -1,5 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
+import { LeftbarService } from '../../services/leftbar.service';
 
 @Component({
   selector: 'app-left-bar',
@@ -10,7 +11,7 @@ import { Component } from '@angular/core';
 })
 export class LeftBarComponent {
 
-  constructor(private leftService:LeftBarComponent){
+  constructor(private leftService:LeftbarService){
 
   }
 
