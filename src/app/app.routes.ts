@@ -8,6 +8,7 @@ import { CodigoPasswordComponent } from './codigo-password/codigo-password.compo
 import { InformacionCursoComponent } from './views/informacion-curso/informacion-curso.component';
 import { SyllabusComponent } from './views/syllabus/syllabus.component';
 import { ExamComponent } from './views/exam/exam.component';
+import { AgregarPreguntaComponent } from './views/agregar-pregunta/agregar-pregunta.component';
 
 export const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -19,4 +20,5 @@ export const routes: Routes = [
   { path: 'info-curso', component: InformacionCursoComponent },
   { path: 'syllabus/:course', component: SyllabusComponent },
   { path: 'exam/:id', component: ExamComponent },
+  {path: 'agregar-pregunta', component: AgregarPreguntaComponent},
 ];

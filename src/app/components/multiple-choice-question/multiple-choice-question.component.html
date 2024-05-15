@@ -1,14 +1,10 @@
-<p>{{ statement }}</p>
+<div class="row">
 
-@for( choice of choices; track choice) {
-<input
-  class="m-1"
-  type="checkbox"
-  id="{{ choice }}"
-  name="options"
-  value="{{ choice }}"
-/>
-<label class="m-1" for="{{ choice }}">{{ choice }}</label
-><br />
-
-}
+    <div class="col-3">
+        <h5>Pregunta</h5>
+        <input type="text" class="form-control" [(ngModel)]="pregunta">
+    </div>
+    <div class="col-9">
+            
+    </div>
+</div>
