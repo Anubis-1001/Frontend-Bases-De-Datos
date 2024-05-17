@@ -10,10 +10,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class PreguntaMultipleComponent {
   
-
-  @Input() punto!: string;
-
-
   seleccionar(seleccionada:String): void {
     console.log('seleccionada', seleccionada);
   }

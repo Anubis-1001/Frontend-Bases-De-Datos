@@ -13,29 +13,13 @@ import { OpcionRespuesta } from '../../dtos/OpcionRespuesta';
 export class MultipleChoiceQuestionComponent {
   
     pregunta!: string;
-    options!: string[];
-    answer!: string;
-    opciones: OpcionRespuesta[] = [
-        { valor: 'A', seleccionado: false },
-        { valor: 'B', seleccionado: false },
-        { valor: 'C', seleccionado: false },
-        { valor: 'D', seleccionado: false }
-      ];
-    seleccionada: number = -1;
-    @ViewChildren(PreguntaMultipleComponent) childrenComponents!: QueryList<PreguntaMultipleComponent>;
     constructor() { }
   
     ngOnInit(): void {
 
     }
   
-    onSubmit() {
-  
-    }
+    
 
-    seleccionarOpcion(index: String): void {
-      this.opciones.forEach(opcion => {
-        opcion.seleccionado = opcion.valor === index;
-      });
-    }
+
 }
