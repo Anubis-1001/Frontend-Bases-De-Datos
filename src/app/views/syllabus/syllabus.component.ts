@@ -41,6 +41,13 @@ export class SyllabusComponent {
         Pivot: 'this is topics #3',
         Coalesce: 'this is topics #4',
       },
+      {
+        title: 'SQL basics 2',
+        'Roll up': 'this is topics #1',
+        'Grouping sets': 'this is topics #2',
+        Pivot: 'this is topics #3',
+        Coalesce: 'this is topics #4',
+      },
     ];
   }
 
