@@ -9,3 +9,8 @@
     background-color: #ffffff;
     min-height: 800px;
 }
+
+app-pregunta-multiple{
+    width: 100%;
+    height: 100%;
+}
