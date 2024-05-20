@@ -10,6 +10,10 @@ import { SyllabusComponent } from './views/syllabus/syllabus.component';
 import { ExamComponent } from './views/exam/exam.component';
 import { AgregarPreguntaComponent } from './views/agregar-pregunta/agregar-pregunta.component';
 
+import { HomeDocenteComponent } from './views/home-docente/home-docente.component';
+import { CursosDocenteComponent } from './views/cursos-docente/cursos-docente.component';
+import { ListaEstudiantesComponent } from './views/lista-estudiantes/lista-estudiantes.component';
+
 export const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'default-view', component: DefaultViewComponent },
@@ -20,5 +24,8 @@ export const routes: Routes = [
   { path: 'info-curso', component: InformacionCursoComponent },
   { path: 'syllabus/:course', component: SyllabusComponent },
   { path: 'exam/:id', component: ExamComponent },
-  {path: 'agregar-pregunta', component: AgregarPreguntaComponent},
+  { path: 'agregar-pregunta', component: AgregarPreguntaComponent },
+  { path: 'home-docente', component: HomeDocenteComponent },
+  { path: 'curso-docente', component: CursosDocenteComponent },
+  { path: 'lista-estudiantes', component: ListaEstudiantesComponent },
 ];
