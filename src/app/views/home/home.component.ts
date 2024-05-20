@@ -4,13 +4,14 @@ import { NavBarComponent } from "../../components/nav-bar/nav-bar.component";
 import { Course } from '../../dtos/Course';
 import { CourseComponent } from "../../components/course/course.component";
 import { UserServiceService } from '../../services/user-service.service';
+import { PendingExamComponent } from "../../components/pending-exam/pending-exam.component";
 
 @Component({
     selector: 'app-home',
     standalone: true,
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
-    imports: [LeftBarComponent, NavBarComponent, CourseComponent]
+    imports: [LeftBarComponent, NavBarComponent, CourseComponent, PendingExamComponent]
 })
 export class HomeComponent implements OnInit {
 
@@ -27,9 +28,7 @@ export class HomeComponent implements OnInit {
       data.forEach(element => {
         element.forEach(course => {
             this.courses?.push(course);
-        });
-      
-        
+        }); 
       });
     });
 
