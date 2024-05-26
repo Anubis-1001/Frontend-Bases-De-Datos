@@ -50,7 +50,7 @@ export class LoginComponent {
     this.authService.login(user).subscribe(
       (data) => {
         console.log(data);
-        if(data.mensaje == '' && data.error == false ) {
+        if(data.error == false ) {
           this.alertService.showMessage('Inicio de sesión exitoso');
 
           if(this.selectedRole == 'admin') {
@@ -75,7 +75,6 @@ export class LoginComponent {
 
   navigate(route: string) {
     this.router.navigate([route]);
-    console.log('navegando a ' + route);
   }
 
 }
