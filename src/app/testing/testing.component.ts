@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { BinaryComponent } from '../components/create-question/binary/binary.component';
-import {CloseButtonComponent} from "../components/props/close-button/close-button.component";
+import {
+  OpMultipleUnicaResComponent
+} from "../components/create-question/op-multiple-unica-res/op-multiple-unica-res.component";
 
 @Component({
   selector: 'app-testing',
   standalone: true,
-  imports: [BinaryComponent, CloseButtonComponent],
+  imports: [OpMultipleUnicaResComponent],
   templateUrl: './testing.component.html',
   styleUrl: './testing.component.css'
 })
