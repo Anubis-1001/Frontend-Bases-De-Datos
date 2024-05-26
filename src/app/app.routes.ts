@@ -12,6 +12,7 @@ import { AgregarPreguntaComponent } from './views/agregar-pregunta/agregar-pregu
 import { HomeDocenteComponent } from './views/home-docente/home-docente.component';
 import { CursosDocenteComponent } from './views/cursos-docente/cursos-docente.component';
 import { ListaEstudiantesComponent } from './views/lista-estudiantes/lista-estudiantes.component';
+import { TestComponent} from "./views/test/test.component";
 
 export const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -27,4 +28,5 @@ export const routes: Routes = [
   {path: 'home-docente', component: HomeDocenteComponent},
   {path:'curso-docente', component:CursosDocenteComponent},
   {path: 'lista-estudiantes', component: ListaEstudiantesComponent},
+  {path: 'test', component: TestComponent}
 ];
