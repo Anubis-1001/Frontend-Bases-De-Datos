@@ -44,12 +44,6 @@ export class LoginComponent {
       return;
     }
 
-  
-    if(isNaN(Number(id))) {
-      this.alertService.showMessage('El ID debe ser un número');
-      return;
-    }
-
 
     let user = new LoginDTO(this.selectedRole, id);
 
