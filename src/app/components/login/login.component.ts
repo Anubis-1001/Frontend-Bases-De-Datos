@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Router, Routes } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthServiceService } from '../../services/http-services/auth-service.service';
 import { LoginDTO } from '../../dtos/autenticacion/Login';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
