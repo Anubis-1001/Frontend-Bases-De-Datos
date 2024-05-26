@@ -31,27 +31,39 @@ export class HomeDocenteComponent {
     ngOnInit(): void {
 
 
+        this.loadName();
+        this.loadCourses();
+    }
+
+
+    loadName() {
         this.docenteService.getName(this.userActivo.getId()).subscribe(
             (data) => {
-
-                if(data.error == false ) {
+                if(data.error == false) {
                     this.nombre = data.mensaje;
                 }
-
             },
             (error) => {
-
+                console.log(error);
             }
         );
-
-
-        this.userService.getCourses().then((data) => {
-
-            data.forEach(element => {
-                element.forEach(course => {
-                    this.courses?.push(course);
-                });
-            });
-        });
     }
+
+
+    loadCourses() {
+        this.docenteService.getCourses(this.userActivo.getId()).subscribe(
+            (data) => {
+                if(data.error == false) {
+                    data.respuesta.forEach((element: Course) => {
+                        this.courses?.push(element);
+                    });
+                }
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+    }
+
+        
 }

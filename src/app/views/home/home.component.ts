@@ -20,8 +20,7 @@ export class HomeComponent implements OnInit {
   courses?: Course[];
   nombre: string;
 
-  constructor(private userService: UserServiceService,
-    private estudianteService: EstudianteService,
+  constructor(private estudianteService: EstudianteService,
     private userActivo: UserActivoService
   ) {
     this.courses = [];
@@ -30,6 +29,34 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
+
+
+    this.loadName();
+    this.loadCourses();
+
+
+
+
+  }
+
+  loadCourses() {
+
+    this.estudianteService.getCourses(this.userActivo.getId(), this.userActivo.getRol()).subscribe(
+      (data) => {
+        if (data.error == false) {
+          data.respuesta.forEach((element: Course) => {
+            this.courses?.push(element);
+          });
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+
+  loadName() {
     this.estudianteService.getName(this.userActivo.getId()).subscribe(
 
       (data) => {
@@ -41,16 +68,6 @@ export class HomeComponent implements OnInit {
         console.log(error);
       }
     );
-
-    this.userService.getCourses().then((data) => {
-
-      data.forEach(element => {
-        element.forEach(course => {
-          this.courses?.push(course);
-        });
-      });
-    });
-
   }
 
 

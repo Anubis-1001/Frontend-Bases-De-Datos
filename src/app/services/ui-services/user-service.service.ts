@@ -15,9 +15,7 @@ export class UserServiceService {
 
   constructor(private http:HttpClient) { }
 
-  async getCourses(): Promise< Observable<Course[]>> {
-    return await this.http.get<Course[]>('../assets/data/home/courses.json');
-  }
+
 
   async getExams():Promise< Observable<Exam[]>> {
     return await this.http.get<Exam[]>('../assets/data/exams/pendingExams.json');

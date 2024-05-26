@@ -16,8 +16,6 @@ export class DescCursoComponent {
         this.course = {
             id_curso: 0,
             nombre: "Administración de TI",
-            descripcion: "Curso de administración de tecnologías de la información",
-            imagen: "/../../assets/data/home/images/Linux.jpg"
         };
     }
 }

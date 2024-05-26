@@ -8,6 +8,7 @@ import { MensajeDTO } from '../../dtos/GlobalDTO/MensajeDTO';
   providedIn: 'root'
 })
 export class EstudianteService {
+  
 
 
   private URL_API: string = environment.ApiUrl;
@@ -19,5 +20,8 @@ export class EstudianteService {
     return this.htpp.get<MensajeDTO>(`${this.URL_API}/estudiante/nombre/${id}`);
   }
 
+  getCourses(id: string, rol: string): Observable<MensajeDTO> {
+    return this.htpp.get<MensajeDTO>(`${this.URL_API}/estudiante/cursos/${id}/${rol}`);
+  }
 
 }
