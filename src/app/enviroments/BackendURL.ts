@@ -1,1 +1,3 @@
-export const BackendURL = 'http://localhost:9090';
+export const environment = {
+    ApiUrl: 'http://localhost:9090/api',
+  };

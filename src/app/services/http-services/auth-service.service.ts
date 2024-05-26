@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SesionDTO } from '../../dtos/autenticacion/SesionDTO';
 import { TokenDTO } from '../../dtos/autenticacion/TokenDTO';
-import { BackendURL } from '../../enviroments/BackendURL';
+import { environment } from '../../enviroments/BackendURL';
+import { LoginDTO } from '../../dtos/autenticacion/Login';
+import { Observable } from 'rxjs';
+import { MensajeDTO } from '../../dtos/GlobalDTO/MensajeDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +12,13 @@ import { BackendURL } from '../../enviroments/BackendURL';
 export class AuthServiceService {
 
 
-  route: string;
+  private URL_API: string = environment.ApiUrl;
 
-  constructor(
-    private http: HttpClient
-  ) { 
-    this.route = '/api/auth'
-  }
+  constructor(private http: HttpClient) {}
 
 
 
-  async login(logion: SesionDTO) {
-    return await this.http.post<TokenDTO>(BackendURL+'/login', logion);
+  login(user: LoginDTO): Observable<MensajeDTO> {
+    return this.http.post<MensajeDTO>(`${this.URL_API}/auth/login`, user);
   }
 }
