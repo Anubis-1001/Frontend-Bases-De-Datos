@@ -4,6 +4,7 @@ import { AuthServiceService } from '../../services/http-services/auth-service.se
 import { LoginDTO } from '../../dtos/autenticacion/Login';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AlertService } from '../../utils/alert.service';
+import { UserActivoService } from '../../services/user-activo/user-activo.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent {
     private authService: AuthServiceService,
     private fb: FormBuilder,
     private alertService: AlertService,
-    private router: Router
+    private router: Router,
+    private activeUser: UserActivoService
   ) { 
     this.formulario = this.fb.group({
       id: ['']
@@ -49,16 +51,19 @@ export class LoginComponent {
 
     this.authService.login(user).subscribe(
       (data) => {
-        console.log(data);
         if(data.error == false ) {
           this.alertService.showMessage('Inicio de sesión exitoso');
 
-          if(this.selectedRole == 'admin') {
+          this.activeUser.setId(id); 
+          if(this.selectedRole == 'estudiante') {
+
+            this.activeUser.setRol('estudiante');
             this.router.navigate(['/home']);
-            console.log('navegando como admin');
+
           } else {
-            this.router.navigate(['/home']);
-            console.log('navegando como usuario');
+
+            this.activeUser.setRol('profesor');
+            this.router.navigate(['/home-docente']);
           }
 
 
