@@ -10,10 +10,12 @@ import { RouterModule, Routes } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  @ViewChild('passwordInput') passwordInput!: ElementRef;
 
-  togglePassword() {
-    const inputType = this.passwordInput.nativeElement.type;
-    this.passwordInput.nativeElement.type = inputType === 'password' ? 'text' : 'password';
+  @ViewChild('passwordInput') passwordInput!: ElementRef;
+  selectedRole!: string;
+
+  selectRole(rol: string) {
+    this.selectedRole = rol;
   }
+  
 }

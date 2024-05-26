@@ -5,15 +5,19 @@
 
     <div class="form">
         <div class="row">
-            <h6 id="email">Email, phone or username</h6>
+            <h6 id="email">User id</h6>
             <input type="text" class="form-control" placeholder="Email, phone or username">
         </div>
 
 
-        <div class="row ">
-            <h6 id="password">password</h6>
-            <input #passwordInput type="password" class="form-control right-padding" placeholder="password">
-            <i (click)="togglePassword()" class="bi bi-eye position-absolute centered-to-right clickable"></i>
+        <div class="dropdown" id="combo">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ selectedRole || 'Role' }}
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" (click)="selectRole('Student')">Student</a></li>
+              <li><a class="dropdown-item" (click)="selectRole('Professor')">Professor</a></li>
+            </ul>
         </div>
 
 

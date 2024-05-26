@@ -24,9 +24,9 @@ export const routes: Routes = [
   { path: 'info-curso', component: InformacionCursoComponent },
   { path: 'syllabus/:course', component: SyllabusComponent },
   { path: 'exam/:id', component: ExamComponent },
-  {path: 'agregar-pregunta', component: AgregarPreguntaComponent},
-  {path: 'home-docente', component: HomeDocenteComponent},
-  {path:'curso-docente', component:CursosDocenteComponent},
-  {path: 'lista-estudiantes', component: ListaEstudiantesComponent},
-  {path: 'test', component: TestComponent}
+  { path: 'agregar-pregunta', component: AgregarPreguntaComponent},
+  { path: 'home-docente', component: HomeDocenteComponent},
+  { path:'curso-docente', component:CursosDocenteComponent},
+  { path: 'lista-estudiantes', component: ListaEstudiantesComponent},
+  { path: '', redirectTo: '/sign-in', pathMatch: 'full'}
 ];

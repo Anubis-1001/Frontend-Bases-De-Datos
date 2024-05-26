@@ -1,6 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
-import { LeftbarService } from '../../services/leftbar.service';
+import { LeftbarService } from '../../services/ui-services/leftbar.service';
 
 @Component({
   selector: 'app-left-bar',
