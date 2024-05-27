@@ -28,5 +28,6 @@ export const routes: Routes = [
   { path: 'home-docente', component: HomeDocenteComponent},
   { path:'curso-docente', component:CursosDocenteComponent},
   { path: 'lista-estudiantes', component: ListaEstudiantesComponent},
+  { path: 'test', component: TestComponent},
   { path: '', redirectTo: '/sign-in', pathMatch: 'full'}
 ];
