@@ -1,14 +1,9 @@
 <p>{{ statement }}</p>
 
 @for( choice of choices; track choice) {
-<input
-  class="m-1"
-  type="checkbox"
-  id="{{ choice }}"
-  name="options"
-  value="{{ choice }}"
-/>
-<label class="m-1" for="{{ choice }}">{{ choice }}</label
-><br />
+<input class="m-1" type="checkbox" id="{{ choice }}" name="options" value="{{ choice }}" />
+<label class="m-1" for="{{ choice }}">{{ choice }}</label><br />
 
 }
+
+<button class="btn btn-primary"> Crear pregunta en el banco</button>

@@ -13,6 +13,8 @@ import { UserActivoService } from '../../services/general-service/user-activo.se
 })
 export class LeftBarComponent {
 
+
+
   rol!: string;
 
   constructor(private leftService:LeftbarService,
@@ -24,8 +26,6 @@ export class LeftBarComponent {
 
   ngOnInit(){
     this.rol = this.userService.getRol();
-    console.log("El rol de quien inicia sesión "+this.userService.getRol());
-    console.log("El rol de quien inicia sesión "+this.rol);
   }
 
 
@@ -40,5 +40,18 @@ export class LeftBarComponent {
 
   logout(){
     this.router.navigate(['/']);
+  }
+
+  irAgregarPregunta() {
+    this.router.navigate(['/agregar-pregunta']);
+  }
+
+  irCursos() {
+    if(this.rol == "docente"){
+      this.router.navigate(['/home-docente']);
+    }
+    else{
+      this.router.navigate(['/home']);
+    }
   }
 }

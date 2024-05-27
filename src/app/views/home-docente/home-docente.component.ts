@@ -17,7 +17,7 @@ import { UserActivoService } from '../../services/general-service/user-activo.se
 })
 export class HomeDocenteComponent {
 
-    courses?: Course[];
+    courses!: Course[];
     nombre: string;
 
     constructor(private userService: UserServiceService,
@@ -40,7 +40,6 @@ export class HomeDocenteComponent {
         this.docenteService.getName(this.userActivo.getId(), this.userActivo.getRol()).subscribe(
             (data) => {
                 if(data.error == false) {
-                    console.log(data);
                     this.nombre = data.mensaje;
                 }
             },

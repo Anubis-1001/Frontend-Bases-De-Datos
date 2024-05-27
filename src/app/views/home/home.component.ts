@@ -17,7 +17,7 @@ import { UserActivoService } from '../../services/general-service/user-activo.se
 })
 export class HomeComponent implements OnInit {
 
-  courses?: Course[];
+  courses!: Course[];
   nombre: string;
 
   constructor(private estudianteService: EstudianteService,
