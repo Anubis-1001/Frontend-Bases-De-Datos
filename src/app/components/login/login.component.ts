@@ -55,7 +55,6 @@ export class LoginComponent {
           this.alertService.showMessage('Inicio de sesión exitoso');
 
           this.activeUser.setId(id); 
-          console.log(user.getRol());
         
 
           if( user.getRol() === 'Alumno' ) {

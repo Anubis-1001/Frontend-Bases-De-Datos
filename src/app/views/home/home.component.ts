@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
 
 
   loadName() {
-    this.estudianteService.getName(this.userActivo.getId()).subscribe(
+    this.estudianteService.getName(this.userActivo.getId(), this.userActivo.getRol()).subscribe(
 
       (data) => {
 

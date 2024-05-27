@@ -37,7 +37,7 @@ export class HomeDocenteComponent {
 
 
     loadName() {
-        this.docenteService.getName(this.userActivo.getId()).subscribe(
+        this.docenteService.getName(this.userActivo.getId(), this.userActivo.getRol()).subscribe(
             (data) => {
                 if(data.error == false) {
                     this.nombre = data.mensaje;

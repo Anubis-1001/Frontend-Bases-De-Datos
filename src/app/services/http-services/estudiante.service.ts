@@ -16,8 +16,8 @@ export class EstudianteService {
   constructor(private htpp: HttpClient) { }
 
 
-  getName(id: string): Observable<MensajeDTO> {
-    return this.htpp.get<MensajeDTO>(`${this.URL_API}/estudiante/nombre/${id}`);
+  getName(id: string, rol:String): Observable<MensajeDTO> {
+    return this.htpp.get<MensajeDTO>(`${this.URL_API}/estudiante/nombre/${id}/${rol}`);
   }
 
   getCourses(id: string, rol: string): Observable<MensajeDTO> {
