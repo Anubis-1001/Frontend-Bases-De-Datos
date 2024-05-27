@@ -1,19 +1,85 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { routes } from '../../app.routes';
-import { RouterModule, Routes } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthServiceService } from '../../services/http-services/auth-service.service';
+import { LoginDTO } from '../../dtos/autenticacion/Login';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AlertService } from '../../utils/alert.service';
+import { UserActivoService } from '../../services/user-activo/user-activo.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  @ViewChild('passwordInput') passwordInput!: ElementRef;
 
-  togglePassword() {
-    const inputType = this.passwordInput.nativeElement.type;
-    this.passwordInput.nativeElement.type = inputType === 'password' ? 'text' : 'password';
+  @ViewChild('passwordInput') passwordInput!: ElementRef;
+  selectedRole!: string;
+  formulario: FormGroup;
+
+  constructor(
+    private authService: AuthServiceService,
+    private fb: FormBuilder,
+    private alertService: AlertService,
+    private router: Router,
+    private activeUser: UserActivoService
+  ) { 
+    this.formulario = this.fb.group({
+      id: ['']
+    });
   }
+
+  selectRole(rol: string) {
+    this.selectedRole = rol;
+  }
+
+  signIn() {
+    
+
+
+    let id = this.formulario.get('id')?.value;
+
+    if(id == null || id == '') {
+      this.alertService.showMessage('Por favor, ingrese un ID válido');
+      return;
+    }
+
+
+    let user = new LoginDTO(this.selectedRole, id);
+
+    this.authService.login(user).subscribe(
+      (data) => {
+        if(data.error == false ) {
+          this.alertService.showMessage('Inicio de sesión exitoso');
+
+          this.activeUser.setId(id); 
+          if(this.selectedRole == 'estudiante') {
+
+            this.activeUser.setRol('estudiante');
+            this.router.navigate(['/home']);
+
+          } else {
+
+            this.activeUser.setRol('profesor');
+            this.router.navigate(['/home-docente']);
+          }
+
+
+        } else {
+          this.alertService.showMessage('Error al iniciar sesión');
+        }
+      },
+      (error) => {
+        console.log(error);
+        this.alertService.showMessage('Error al iniciar sesión');
+      }
+    );    
+  }
+
+  navigate(route: string) {
+    this.router.navigate([route]);
+  }
+
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserServiceService } from '../../services/user-service.service';
+import { UserServiceService } from '../../services/ui-services/user-service.service';
 import { ExamDone } from '../../dtos/ExamDone';
 import { ExamPassedComponent } from "../exam-passed/exam-passed.component";
 import { ExamFailedComponent } from "../exam-failed/exam-failed.component";

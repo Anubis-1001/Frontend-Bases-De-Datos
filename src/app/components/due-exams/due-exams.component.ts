@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Exam } from '../../dtos/Exam';
-import { UserServiceService } from '../../services/user-service.service';
+import { UserServiceService } from '../../services/ui-services/user-service.service';
 import { PendingExamItemComponent } from "../pending-exam-item/pending-exam-item.component";
 
 @Component({

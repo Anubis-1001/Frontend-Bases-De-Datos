@@ -22,4 +22,5 @@ type SimpleQuestion = {
 export class MultipartQuestionComponent {
   @Input('statement') statement!: string;
   @Input('subquestions') subquestions!: SimpleQuestion[];
+  @Input('points') points!: number;
 }

@@ -4,20 +4,21 @@ import { CardComponent } from '../../components/card/card.component';
 import { SingleChoiceQuestionComponent } from '../../components/single-choice-question/single-choice-question.component';
 import { MultipleChoiceQuestionComponent } from '../../components/multiple-choice-question/multiple-choice-question.component';
 import { MultipartQuestionComponent } from '../../components/multipart-question/multipart-question.component';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 type SimpleQuestion = {
   type: 'single-choice' | 'multiple-choice';
   statement: string;
   choices: string[];
+  correct_option: any;
+  points: number;
 };
 
 type MultipartQuestion = {
   type: 'multipart';
   statement: string;
   subquestions: SimpleQuestion[];
+  points: number;
 };
 @Component({
   selector: 'app-exam',
@@ -35,22 +36,10 @@ type MultipartQuestion = {
 })
 export class ExamComponent implements OnInit {
   @Input('exam_title') exam_title!: string;
-  time: number = 3600;
-  checked = [
-    true,
-    false,
-    true,
-    false,
-    false,
-    true,
-    false,
-    true,
-    false,
-    true,
-    false,
-    true,
-    false,
-  ];
+  @Input('time') time: number = 3600;
+  points: number = 0;
+
+  checked: boolean[] = [];
   initialTime: number = this.time;
   timeString: string = '';
   gradesStyle!: string;
@@ -60,20 +49,27 @@ export class ExamComponent implements OnInit {
       type: 'single-choice',
       statement: 'ip del DNS de Google',
       choices: ['8.8.8.8', '192.168.0.1', '0.0.0.0'],
+      correct_option: 1,
+      points: 20,
     },
     {
       type: 'multiple-choice',
       statement: 'herramientas en Devops',
       choices: ['Docker', 'Jenkins', 'React Native', 'Postgresql'],
+      correct_option: [0, 1],
+      points: 20,
     },
     {
       type: 'multipart',
       statement: 'responda los siguientes conceptos',
+      points: 20,
       subquestions: [
         {
           type: 'multiple-choice',
           statement: 'hello world',
           choices: ['1', '2', '3', '4'],
+          correct_option: [1, 2],
+          points: 50,
         },
         {
           type: 'single-choice',
@@ -84,6 +80,8 @@ export class ExamComponent implements OnInit {
             'a route',
             'a ping message',
           ],
+          correct_option: 1,
+          points: 20,
         },
       ],
     },
@@ -96,22 +94,30 @@ export class ExamComponent implements OnInit {
         'a route',
         'a ping message',
       ],
+      correct_option: 1,
+      points: 20,
     },
     {
       type: 'single-choice',
-      statement: 'what is an ip address',
+      statement: 'what stands DNS for?',
       choices: [
-        'a house address',
-        'a host address',
-        'a route',
-        'a ping message',
+        'Direct Network Service',
+        'Dandified Netwrok Service',
+        'Difussion Net System',
+        'Domain Name System',
       ],
+      correct_option: 3,
+      points: 20,
     },
   ];
 
   ngOnInit(): void {
     if (!this.exam_title) {
       this.exam_title = 'ip address quizwez';
+    }
+
+    for (let question of this.questions) {
+      this.checked.push(true);
     }
 
     setInterval(() => {
@@ -169,5 +175,11 @@ export class ExamComponent implements OnInit {
 
   onSubmit() {
     console.log('fsdf');
+  }
+
+  changeGrade(responseData: { points: number; index: number }) {
+    this.points += responseData.points;
+    this.checked[responseData.index] = false;
+    console.log(`points are currently ${this.points}`);
   }
 }

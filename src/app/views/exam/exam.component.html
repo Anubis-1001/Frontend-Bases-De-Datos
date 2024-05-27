@@ -13,16 +13,27 @@
           <app-single-choice-question
             [statement]="question.statement"
             [choices]="question.choices"
+            [correct_option]="question.correct_option"
+            [points]="question.points"
+            [gid]="question.statement"
+            [question_number]="$index"
+            (valueChange)="changeGrade($event)"
           ></app-single-choice-question>
           } @if( question.type == 'multiple-choice' ){
           <app-multiple-choice-question
             [statement]="question.statement"
             [choices]="question.choices"
+            [points]="question.points"
+            [gid]="question.statement"
+            [correct_option]="question.correct_option"
+            [question_number]="$index"
+            (valueChange)="changeGrade($event)"
           ></app-multiple-choice-question>
           } @if( question.type == 'multipart' ){
           <app-multipart-question
             [statement]="question.statement"
             [subquestions]="question.subquestions"
+            [points]="question.points"
           ></app-multipart-question>
           }
         </app-card>
@@ -44,10 +55,10 @@
       <div class="container">
         <div class="row">
           @for( check of checked; track $index){
-          <div class="col-md-2">
+          <div class="col-md-3">
             @if( check){
             <app-card
-              [style]="'width: 50px; height: 50px'"
+              [style]="'width: 100%; height: 50px'"
               [class]="
                 'border justify-content-center rounded m-2 text-center align-items-center pt-2'
               "
@@ -56,7 +67,7 @@
             } @else {
 
             <app-card
-              [style]="'width: 50px; background-color: gray; height: 50px'"
+              [style]="'width: 100%; background-color: gray; height: 50px'"
               [class]="
                 'border justify-content-center rounded m-2 text-center align-items-center pt-2'
               "
