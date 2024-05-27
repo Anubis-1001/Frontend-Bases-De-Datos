@@ -51,7 +51,6 @@ export class ExamsComponent implements OnInit {
     this.estudianteService.getExamsPendientes(exam).subscribe(
       (data) => {
         console.log("Exams pendientes");
-        console.log(data.respuesta);
         this.examenesPendientes = data.respuesta;
         console.log(this.examenesPendientes);
       },
