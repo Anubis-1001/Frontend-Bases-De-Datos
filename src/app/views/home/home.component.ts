@@ -1,12 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { LeftBarComponent } from "../../components/left-bar/left-bar.component";
 import { NavBarComponent } from "../../components/nav-bar/nav-bar.component";
-import { Course } from '../../dtos/Course';
+import { Course } from '../../dtos/estudiante/Course';
 import { CourseComponent } from "../../components/course/course.component";
 import { UserServiceService } from '../../services/ui-services/user-service.service';
 import { PendingExamComponent } from "../../components/pending-exam/pending-exam.component";
 import { EstudianteService } from '../../services/http-services/estudiante.service';
-import { UserActivoService } from '../../services/user-activo/user-activo.service';
+import { UserActivoService } from '../../services/general-service/user-activo.service';
 
 @Component({
   selector: 'app-home',
@@ -57,11 +57,13 @@ export class HomeComponent implements OnInit {
 
 
   loadName() {
-    this.estudianteService.getName(this.userActivo.getId()).subscribe(
+    this.estudianteService.getName(this.userActivo.getId(), this.userActivo.getRol()).subscribe(
 
       (data) => {
-
-        if (data.error == false) this.nombre = data.mensaje;
+        if (data.error == false) {
+          this.nombre = data.respuesta;
+          this.userActivo.setNombre(this.nombre);
+        }
 
       },
       (error) => {

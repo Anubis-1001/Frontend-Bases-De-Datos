@@ -4,9 +4,9 @@ import { PendingExamComponent } from "../../components/pending-exam/pending-exam
 import { NavBarComponent } from "../../components/nav-bar/nav-bar.component";
 import { LeftBarComponent } from "../../components/left-bar/left-bar.component";
 import { UserServiceService } from '../../services/ui-services/user-service.service';
-import { Course } from '../../dtos/Course';
+import { Course } from '../../dtos/estudiante/Course';
 import { DocenteService } from '../../services/http-services/docente.service';
-import { UserActivoService } from '../../services/user-activo/user-activo.service';
+import { UserActivoService } from '../../services/general-service/user-activo.service';
 
 @Component({
     selector: 'app-home-docente',
@@ -37,9 +37,10 @@ export class HomeDocenteComponent {
 
 
     loadName() {
-        this.docenteService.getName(this.userActivo.getId()).subscribe(
+        this.docenteService.getName(this.userActivo.getId(), this.userActivo.getRol()).subscribe(
             (data) => {
                 if(data.error == false) {
+                    console.log(data);
                     this.nombre = data.mensaje;
                 }
             },

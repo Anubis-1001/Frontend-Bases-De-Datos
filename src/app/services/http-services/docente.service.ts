@@ -16,8 +16,8 @@ export class DocenteService {
   ) { }
 
 
-  getName(id: string): Observable<MensajeDTO> {
-    return this.htpp.get<MensajeDTO>(`${this.URL_API}/docente/nombre/${id}`);
+  getName(id: string, rol:String): Observable<MensajeDTO> {
+    return this.htpp.get<MensajeDTO>(`${this.URL_API}/docente/nombre/${id}/${rol}`);
   }
 
 

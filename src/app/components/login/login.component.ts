@@ -4,7 +4,7 @@ import { AuthServiceService } from '../../services/http-services/auth-service.se
 import { LoginDTO } from '../../dtos/autenticacion/Login';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AlertService } from '../../utils/alert.service';
-import { UserActivoService } from '../../services/user-activo/user-activo.service';
+import { UserActivoService } from '../../services/general-service/user-activo.service';
 
 @Component({
   selector: 'app-login',
@@ -55,15 +55,20 @@ export class LoginComponent {
           this.alertService.showMessage('Inicio de sesión exitoso');
 
           this.activeUser.setId(id); 
-          if(this.selectedRole == 'estudiante') {
+        
 
-            this.activeUser.setRol('estudiante');
+          if( user.getRol() === 'Alumno' ) {
+
             this.router.navigate(['/home']);
-
+            this.activeUser.setRol('estudiante');
+            
           } else {
-
-            this.activeUser.setRol('profesor');
+            
             this.router.navigate(['/home-docente']);
+            this.activeUser.setRol('profesor');
+           
+
+            
           }
 
 

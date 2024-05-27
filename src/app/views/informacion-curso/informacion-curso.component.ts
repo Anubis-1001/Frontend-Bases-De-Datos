@@ -20,13 +20,7 @@ export class InformacionCursoComponent {
   curso!: CourseInfo;
 
   ngOnInit() {
-    this.usrService.getCourseInfo().then((data) => {
-      data.subscribe(response => {
-        
-        this.curso = response;
-        console.log(response);
-      });
-    });
+    
   }
 
 }

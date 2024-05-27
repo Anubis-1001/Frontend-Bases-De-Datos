@@ -1,6 +1,8 @@
 import { Component, Inject, Input } from '@angular/core';
-import { Course } from '../../dtos/Course';
+import { Course } from '../../dtos/estudiante/Course';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { Router } from '@angular/router';
+import { CourseService } from '../../services/general-service/course.service';
 
 @Component({
   selector: 'app-course',
@@ -11,5 +13,17 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 })
 export class CourseComponent {
 
-  @Input() course?: Course;
+  @Input() course!: Course;
+
+  constructor(private router:Router,
+    private courseService: CourseService
+  ) {
+  }
+
+
+  loadCourse(){
+    this.courseService.setCourse(this.course);
+    this.router.navigate(['/exams']);
+  }
+
 }
