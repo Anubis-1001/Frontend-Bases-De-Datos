@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-matching-question',
   standalone: true,
-  imports: [],
   imports: [FormsModule],
   templateUrl: './matching-question.component.html',
   styleUrl: './matching-question.component.css',
