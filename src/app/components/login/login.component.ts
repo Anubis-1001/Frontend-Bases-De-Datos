@@ -55,15 +55,21 @@ export class LoginComponent {
           this.alertService.showMessage('Inicio de sesión exitoso');
 
           this.activeUser.setId(id); 
-          if(this.selectedRole == 'estudiante') {
+          console.log(user.getRol());
+        
 
-            this.activeUser.setRol('estudiante');
+          if( user.getRol() === 'Alumno' ) {
+
             this.router.navigate(['/home']);
-
+            this.activeUser.setRol('estudiante');
+            
           } else {
-
-            this.activeUser.setRol('profesor');
+            
             this.router.navigate(['/home-docente']);
+            this.activeUser.setRol('profesor');
+           
+
+            
           }
 
 
