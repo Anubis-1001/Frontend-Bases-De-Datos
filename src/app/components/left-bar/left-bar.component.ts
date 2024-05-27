@@ -1,6 +1,7 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { LeftbarService } from '../../services/ui-services/leftbar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-left-bar',
@@ -11,7 +12,9 @@ import { LeftbarService } from '../../services/ui-services/leftbar.service';
 })
 export class LeftBarComponent {
 
-  constructor(private leftService:LeftbarService){
+  constructor(private leftService:LeftbarService,
+    private router: Router
+  ){
 
   }
 
@@ -22,5 +25,10 @@ export class LeftBarComponent {
 
   seePendingExams(){
     this.leftService.seePendingExams();
+  }
+
+
+  logout(){
+    this.router.navigate(['/']);
   }
 }
