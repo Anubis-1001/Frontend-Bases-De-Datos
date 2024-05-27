@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Exam } from '../../dtos/Exam';
+import { ExamDue } from '../../dtos/Exam';
 
 @Component({
   selector: 'app-pending-exam-item',
@@ -10,5 +10,5 @@ import { Exam } from '../../dtos/Exam';
 })
 export class PendingExamItemComponent {
 
-  @Input() exam?: Exam;
+  @Input() exam?: ExamDue;
 }

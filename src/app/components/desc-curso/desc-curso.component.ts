@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CourseComponent } from "../course/course.component";
-import { Course } from '../../dtos/Course';
+import { Course } from '../../dtos/estudiante/Course';
 
 @Component({
     selector: 'app-desc-curso',

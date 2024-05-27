@@ -1,5 +1,5 @@
-export interface Exam {
+export interface ExamDue {
     id_examen: number;
-    nombre: string;
+    nombreExamen: string;
     fecha: Date;
 }
