@@ -14,8 +14,10 @@ export class DescCursoComponent {
 
     constructor() {
         this.course = {
-            id_curso: 0,
-            nombre: "Administración de TI",
+            id_grupo: 0,
+            nombre_curso: '',
+            nombre_grupo: ''
+           
         };
     }
 }

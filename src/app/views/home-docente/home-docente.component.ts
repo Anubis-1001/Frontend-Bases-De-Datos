@@ -40,6 +40,7 @@ export class HomeDocenteComponent {
         this.docenteService.getName(this.userActivo.getId(), this.userActivo.getRol()).subscribe(
             (data) => {
                 if(data.error == false) {
+                    console.log(data);
                     this.nombre = data.mensaje;
                 }
             },

@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
 
     this.estudianteService.getCourses(this.userActivo.getId(), this.userActivo.getRol()).subscribe(
       (data) => {
+        console.log(data);
         if (data.error == false) {
           data.respuesta.forEach((element: Course) => {
             this.courses?.push(element);
@@ -60,8 +61,9 @@ export class HomeComponent implements OnInit {
     this.estudianteService.getName(this.userActivo.getId(), this.userActivo.getRol()).subscribe(
 
       (data) => {
-
-        if (data.error == false) this.nombre = data.mensaje;
+        if (data.error == false) {
+          this.nombre = data.respuesta;
+        }
 
       },
       (error) => {
