@@ -24,4 +24,8 @@ export class DocenteService {
   getCourses(id: string): Observable<MensajeDTO> {
     return this.htpp.get<MensajeDTO>(`${this.URL_API}/docente/cursos/${id}`);
   }
+
+  getTodoTemas(idGrupo:number):Observable<MensajeDTO>{
+    return this.htpp.get<MensajeDTO>(`${this.URL_API}/docente/temas/${idGrupo}`);
+  }
 }
