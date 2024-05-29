@@ -25,10 +25,6 @@ export class CourseComponent {
 
   loadCourse(){
     this.courseService.setCourse(this.course);
-    if(this.userActive.getRol()=='docente' ){
-      this.router.navigate(['/exams']);
-    }
-    
   }
 
 }

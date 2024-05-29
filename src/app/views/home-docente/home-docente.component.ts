@@ -7,13 +7,14 @@ import { UserServiceService } from '../../services/ui-services/user-service.serv
 import { Course } from '../../dtos/estudiante/Course';
 import { DocenteService } from '../../services/http-services/docente.service';
 import { UserActivoService } from '../../services/general-service/user-activo.service';
+import { CourseDocenteComponent } from "../../components/course-docente/course-docente.component";
 
 @Component({
     selector: 'app-home-docente',
     standalone: true,
     templateUrl: './home-docente.component.html',
     styleUrl: './home-docente.component.css',
-    imports: [CourseComponent, PendingExamComponent, NavBarComponent, LeftBarComponent]
+    imports: [CourseComponent, PendingExamComponent, NavBarComponent, LeftBarComponent, CourseDocenteComponent]
 })
 export class HomeDocenteComponent {
 
