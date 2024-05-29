@@ -17,7 +17,7 @@ export class PreambuloCreacionExamenComponent implements OnInit{
 
   temas!:any[];
   course!: Course
-  formulario: FormGroup;
+  formulario!: FormGroup;
 
   constructor(
     private docenteService: DocenteService,
@@ -58,18 +58,20 @@ export class PreambuloCreacionExamenComponent implements OnInit{
   crearExamen() {
 
     let examen = new CrearExamenDTO(
-      this.formulario.value.preguntasMax,
-      this.formulario.value.preguntasAle,
-      this.formulario.value.porcentajeCurso,
-      this.formulario.value.nombre,
-      this.formulario.value.porcentajeAprobatorio,
-      this.formulario.value.fechaInicio,
-      this.formulario.value.fechaFin,
-      this.formulario.value.tema,
-      this.course.id_grupo,
+      this.formulario.get('preguntasMax')!.value,
+      this.formulario.get('preguntasAle')!.value,
+      this.formulario.get('porcentajeCurso')!.value,
+      this.formulario.get('nombre')!.value,
+      this.formulario.get('porcentajeAprobatorio')!.value,
+      this.formulario.get('fechaInicio')!.value,
+      this.formulario.get('fechaFin')!.value,
+      10,
+      +this.formulario.get('tema')!.value,
       +this.usuarioActivo.getId(),
-      this.course.id_grupo
+      +this.course.id_grupo
     );
+
+    console.log(examen);
 
     this.docenteService.crearExamen(examen).subscribe(
       (data) => {
