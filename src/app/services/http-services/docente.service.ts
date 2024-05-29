@@ -34,4 +34,8 @@ export class DocenteService {
   crearExamen(examen: CrearExamenDTO):Observable<MensajeDTO>{
     return this.htpp.post<MensajeDTO>(`${this.URL_API}/docente/crearExamen`, examen);
   }
+
+  getAllTemas():Observable<MensajeDTO>{
+    return this.htpp.get<MensajeDTO>(`${this.URL_API}/docente/allTemas`);
+  }
 }

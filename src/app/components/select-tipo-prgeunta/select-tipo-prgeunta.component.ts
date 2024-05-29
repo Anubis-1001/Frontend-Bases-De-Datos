@@ -5,6 +5,7 @@ import { MultipleChoiceQuestionComponent } from "../multiple-choice-question/mul
 import { UniqueAnswerQuestionComponent } from "../unique-answer-question/unique-answer-question.component";
 import { TruFalseQuestionComponent } from "../tru-false-question/tru-false-question.component";
 import { MatchingQuestionComponent } from "../matching-question/matching-question.component";
+import { DocenteService } from '../../services/http-services/docente.service';
 
 @Component({
     selector: 'app-select-tipo-prgeunta',
@@ -23,14 +24,16 @@ export class SelectTipoPrgeuntaComponent {
   temaSelected!: string;
 
 
-  constructor() { }
+  constructor(
+    private docenteService: DocenteService,
+  ) { }
 
   ngOnInit(): void {
     this.value = 0;
     this.valuePregunta = 1;
     this.tipoPregunta = 'Multiple choice';
     this.tiposPregunta = ['Multiple choice', 'Unique answer','True/False', 'Matching'];
-
+    this.temas = [];
     this.loadTemas();
   }
 
@@ -39,7 +42,18 @@ export class SelectTipoPrgeuntaComponent {
   }
 
   loadTemas() {
-    this.temas = ['Tema 1', 'Tema 2', 'Tema 3', 'Tema 4', 'Tema 5'];
+   this.docenteService.getAllTemas().subscribe(
+      (data) => {
+        data.respuesta.forEach((element: any) => {
+          this.temas.push(element.titulo);
+          console.log(element.titulo);
+        });
+
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
 

@@ -5,6 +5,8 @@ import { CrearExamenService } from '../../services/ui-services/crear-examen.serv
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CrearExamenDTO } from '../../dtos/estudiante/CrearExam';
 import { UserActivoService } from '../../services/general-service/user-activo.service';
+import { DatePipe } from '@angular/common';
+import { AlertService } from '../../utils/alert.service';
 
 @Component({
   selector: 'app-preambulo-creacion-examen',
@@ -23,7 +25,9 @@ export class PreambuloCreacionExamenComponent implements OnInit{
     private docenteService: DocenteService,
     private courseService: CrearExamenService,
     private fb: FormBuilder,
-    private usuarioActivo: UserActivoService
+    private usuarioActivo: UserActivoService,
+    private datePipe: DatePipe,
+    private alertService: AlertService
   ) {
     this.temas = [];
 
@@ -57,25 +61,27 @@ export class PreambuloCreacionExamenComponent implements OnInit{
 
   crearExamen() {
 
+    let fechaInicio = this.datePipe.transform(this.formulario.get('fechaInicio')!.value, 'yyyy-MM-dd HH:mm:ss');
+    let fechaFin = this.datePipe.transform(this.formulario.get('fechaFin')!.value, 'yyyy-MM-dd HH:mm:ss');
+
     let examen = new CrearExamenDTO(
       this.formulario.get('preguntasMax')!.value,
       this.formulario.get('preguntasAle')!.value,
       this.formulario.get('porcentajeCurso')!.value,
       this.formulario.get('nombre')!.value,
       this.formulario.get('porcentajeAprobatorio')!.value,
-      this.formulario.get('fechaInicio')!.value,
-      this.formulario.get('fechaFin')!.value,
+      fechaInicio!.toString(),
+      fechaFin!.toString(),
       10,
       +this.formulario.get('tema')!.value,
       +this.usuarioActivo.getId(),
       +this.course.id_grupo
     );
 
-    console.log(examen);
-
     this.docenteService.crearExamen(examen).subscribe(
       (data) => {
-        console.log(data);
+        
+        this.alertService.showMessage('Examen creado');
       },
       (error) => {
         console.log(error);
