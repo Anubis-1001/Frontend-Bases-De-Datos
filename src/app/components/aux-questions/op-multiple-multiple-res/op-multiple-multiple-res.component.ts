@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
@@ -12,6 +12,9 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
   styleUrl: './op-multiple-multiple-res.component.css'
 })
 export class OpMultipleMultipleResComponent {
+
+  @Input() tema : string = '';
+
   questionForm: FormGroup = new FormGroup({
     statement: new FormControl(''),
     res1: new FormControl(''),
@@ -23,6 +26,8 @@ export class OpMultipleMultipleResComponent {
 
 
   onSubmit() {
+    console.log(this.tema)
     console.log(this.questionForm.value);
   }
+
 }

@@ -2,7 +2,9 @@
     <div id="container" class="d-flex flex-column align-items-center">
         <h4 class="text-start">Selecciona el tema</h4>
         <select class="form-select" [(ngModel)]="temaSelected">
-            <option *ngFor="let tema of temas" [value]="tema">{{tema}}</option>
+<!--            <option *ngFor="let tema of temas" [value]="tema">{{tema}}</option>-->
+          <option value="jupiter"selected>Jupiter</option>
+          <option value="mars">Mars</option>
         </select>
 
         <h4 class="text-start">Selecciona el tipo de pregunta</h4>
@@ -15,19 +17,19 @@
       <div id="container-pregunta">
 
         @if (valuePregunta == 1) {
-        <app-multiple-choice-question/>
+        <app-op-multiple-multiple-res [tema]=this.temaSelected></app-op-multiple-multiple-res>
         }
 
         @if (valuePregunta == 2) {
-          <app-op-multiple-unica-res/>
+          <app-op-multiple-unica-res [tema]=this.temaSelected></app-op-multiple-unica-res>
         }
 
         @if (valuePregunta == 3) {
-          <app-tru-false-question/>
+          <app-tru-false-question [tema]=this.temaSelected></app-tru-false-question>
         }
 
         @if (valuePregunta == 4) {
-          <app-matching-question/>
+          <app-matching-question [tema]=this.temaSelected></app-matching-question>
         }
       </div>
 

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
@@ -12,6 +12,8 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
   styleUrl: './op-multiple-unica-res.component.css'
 })
 export class OpMultipleUnicaResComponent {
+
+  @Input() tema : string = '';
 
   constructor(private  el : ElementRef) {
   }

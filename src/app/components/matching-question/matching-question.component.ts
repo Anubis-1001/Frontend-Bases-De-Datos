@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './matching-question.component.css'
 })
 export class MatchingQuestionComponent {
+
+  @Input() tema : string = '';
 
   emparejadas:String[] = [];
   pregunta!:String;

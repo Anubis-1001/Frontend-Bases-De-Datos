@@ -7,13 +7,16 @@ import { TruFalseQuestionComponent } from "../tru-false-question/tru-false-quest
 import { MatchingQuestionComponent } from "../matching-question/matching-question.component";
 import { DocenteService } from '../../services/http-services/docente.service';
 import {OpMultipleUnicaResComponent} from "../aux-questions/op-multiple-unica-res/op-multiple-unica-res.component";
+import {
+  OpMultipleMultipleResComponent
+} from "../aux-questions/op-multiple-multiple-res/op-multiple-multiple-res.component";
 
 @Component({
     selector: 'app-select-tipo-prgeunta',
     standalone: true,
     templateUrl: './select-tipo-prgeunta.component.html',
     styleUrl: './select-tipo-prgeunta.component.css',
-  imports: [CommonModule, FormsModule, MultipleChoiceQuestionComponent, UniqueAnswerQuestionComponent, TruFalseQuestionComponent, MatchingQuestionComponent, OpMultipleUnicaResComponent]
+  imports: [CommonModule, FormsModule, MultipleChoiceQuestionComponent, UniqueAnswerQuestionComponent, TruFalseQuestionComponent, MatchingQuestionComponent, OpMultipleUnicaResComponent, OpMultipleMultipleResComponent]
 })
 export class SelectTipoPrgeuntaComponent {
 
@@ -58,4 +61,7 @@ export class SelectTipoPrgeuntaComponent {
   }
 
 
+  printTema() {
+    console.log(this.temaSelected);
+  }
 }
