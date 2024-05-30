@@ -10,20 +10,26 @@
             <option *ngFor="let tipo of tiposPregunta; let i = index" [value]="i + 1">{{tipo}}</option>
 <!--          ARRAY DE PREGUNTAS  ['Multiple choice', 'Unique answer','True/False', 'Matching'];-->
         </select>
-            @if(valuePregunta == 1){
-              <app-multiple-choice-question/>
-            }
 
-            @if(valuePregunta == 2){
-              <app-op-multiple-unica-res/>
-            }
 
-            @if(valuePregunta == 3){
-                <app-tru-false-question/>
-            }
+      <div id="container-pregunta">
 
-            @if(valuePregunta == 4){
-                <app-matching-question/>
-            }
+        @if (valuePregunta == 1) {
+        <app-multiple-choice-question/>
+        }
+
+        @if (valuePregunta == 2) {
+          <app-op-multiple-unica-res/>
+        }
+
+        @if (valuePregunta == 3) {
+          <app-tru-false-question/>
+        }
+
+        @if (valuePregunta == 4) {
+          <app-matching-question/>
+        }
+      </div>
+
     </div>
 </div>

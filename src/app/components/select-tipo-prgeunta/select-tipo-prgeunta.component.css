@@ -14,3 +14,7 @@ app-pregunta-multiple{
     width: 100%;
     height: 100%;
 }
+
+#container-pregunta {
+  width: 80%;
+}
