@@ -4,6 +4,9 @@ import { CardComponent } from '../../components/card/card.component';
 import { SingleChoiceQuestionComponent } from '../../components/single-choice-question/single-choice-question.component';
 import { MultipleChoiceQuestionComponent } from '../../components/multiple-choice-question/multiple-choice-question.component';
 import { MultipartQuestionComponent } from '../../components/multipart-question/multipart-question.component';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { FormsModule } from '@angular/forms';
 import { TruFalseQuestionComponent } from '../../components/tru-false-question/tru-false-question.component';
 import { VerdaderoFalsoComponent } from '../../components/verdadero-falso/verdadero-falso.component';
@@ -29,10 +32,6 @@ import { MensajeDTO } from '../../dtos/GlobalDTO/MensajeDTO';
     SingleChoiceQuestionComponent,
     MultipleChoiceQuestionComponent,
     MultipartQuestionComponent,
-    VerdaderoFalsoComponent,
-    FormsModule,
-    HttpClientModule,
-    InMemoryWebApiModule,
   ],
   templateUrl: './exam.component.html',
   styleUrl: './exam.component.css',
@@ -123,23 +122,5 @@ export class ExamComponent implements OnInit {
     path += ' L' + width * (1 - (grades % 90) / 90) + ',0';
     path += ' Z';
     return path;
-  }
-
-  submitExam() {
-    this.examenService
-      .postExam({
-        id_estudiante: 1,
-        id_examen: this.exam_id,
-        nota: this.points,
-      })
-      .subscribe((res) =>
-        console.log(`response from server is ${JSON.stringify(res)}`)
-      );
-  }
-
-  changeGrade(responseData: { points: number; index: number }) {
-    this.points += responseData.points;
-    this.checked[responseData.index] = false;
-    console.log(`points are currently ${this.points}`);
   }
 }
