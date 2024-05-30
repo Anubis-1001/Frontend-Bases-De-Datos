@@ -26,8 +26,7 @@ export class OpMultipleMultipleResComponent {
 
 
   onSubmit() {
-    console.log(this.tema)
-    console.log(this.questionForm.value);
+
   }
 
 }

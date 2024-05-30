@@ -4,13 +4,14 @@ import { environment } from '../../enviroments/BackendURL';
 import { HttpClient } from '@angular/common/http';
 import { MensajeDTO } from '../../dtos/GlobalDTO/MensajeDTO';
 import { CrearExamenDTO } from '../../dtos/estudiante/CrearExam';
+import {PreguntaDTO} from "../../dtos/pregunta";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DocenteService {
-  
- 
+
+
   private URL_API: string = environment.ApiUrl;
 
   constructor(
@@ -37,5 +38,9 @@ export class DocenteService {
 
   getAllTemas():Observable<MensajeDTO>{
     return this.htpp.get<MensajeDTO>(`${this.URL_API}/docente/allTemas`);
+  }
+
+  crearPregunta(pregunta: PreguntaDTO): Observable<MensajeDTO> {
+    return this.htpp.post<MensajeDTO>(`${this.URL_API}/docente/crearPregunta`, pregunta);
   }
 }
