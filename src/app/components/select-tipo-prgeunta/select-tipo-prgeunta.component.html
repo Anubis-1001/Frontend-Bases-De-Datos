@@ -8,19 +8,20 @@
         <h4 class="text-start">Selecciona el tipo de pregunta</h4>
         <select class="form-select" [(ngModel)]="tipoPregunta" (change)="onChange($event)">
             <option *ngFor="let tipo of tiposPregunta; let i = index" [value]="i + 1">{{tipo}}</option>
+<!--          ARRAY DE PREGUNTAS  ['Multiple choice', 'Unique answer','True/False', 'Matching'];-->
         </select>
             @if(valuePregunta == 1){
-                <app-unique-answer-question/>        
+              <app-multiple-choice-question/>
             }
-        
-            @if(valuePregunta == 2){        
-                <app-multiple-choice-question/>
+
+            @if(valuePregunta == 2){
+              <app-op-multiple-unica-res/>
             }
-        
+
             @if(valuePregunta == 3){
                 <app-tru-false-question/>
             }
-        
+
             @if(valuePregunta == 4){
                 <app-matching-question/>
             }

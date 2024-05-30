@@ -1,0 +1,67 @@
+<div class="my-container">
+
+  <div class="question-form">
+
+
+    <form [formGroup]="questionForm">
+      <div class="form-group">
+        <label for="statement" class="title">Enunciado</label>
+        <input type="text" id="statement" formControlName="statement" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label class="title">Respuesta</label>
+        <div class="answer-options">
+          <div class="option">
+            <label for="pregunta-1">A)</label>
+            <input type="text" id="pregunta-1" formControlName="res1" class="form-control">
+          </div>
+
+          <div class="option">
+            <label for="pregunta-2">B)</label>
+            <input type="text" id="pregunta-2" formControlName="res2" class="form-control">
+          </div>
+
+          <div class="option">
+            <label for="pregunta-3">C)</label>
+            <input type="text" id="pregunta-3" formControlName="res3" class="form-control">
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="inline-block">
+        <div class="option">
+          <label style="font-weight: bold" for="pregunta-3">Respuesta correcta</label>
+          <div class="inline-block">
+            <label for="A">A</label>
+            <input id="A" type="radio" formControlName="res_correcta" value="A">
+            <br>
+            <label for="B">B</label>
+            <input id="B" type="radio" formControlName="res_correcta" value="B">
+            <br>
+            <label for="C">C</label>
+            <input id="C" type="radio" formControlName="res_correcta" value="C">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="title">¿Quieres que esta pregunta esté disponible públicamente?</label>
+
+        <div class="public-options">
+          <div class="inline-block">
+            <label for="yes">Sí</label>
+            <input type="radio" id="yes" formControlName="public" value="true">
+          </div>
+          <div class="inline-block">
+            <label for="no">No</label>
+            <input type="radio" id="no" formControlName="public" value="false">
+          </div>
+        </div>
+      </div>
+
+      <button (click)="onSubmit()" class="btn" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
