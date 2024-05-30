@@ -6,39 +6,42 @@
   <div style="width: 80%">
     <h1 class="m-4 p-4">{{ exam_title }}</h1>
     <div class="m-5">
-      <form (ngSubmit)="onSubmit()" #form="ngForm">
-        @for( question of questions; track question){
-        <app-card>
-          @if( question.type == 'single-choice' ){
-          <app-single-choice-question
-            [statement]="question.statement"
-            [choices]="question.choices"
-            [correct_option]="question.correct_option"
-            [points]="question.points"
-            [gid]="question.statement"
-            [question_number]="$index"
-            (valueChange)="changeGrade($event)"
-          ></app-single-choice-question>
-          } @if( question.type == 'multiple-choice' ){
-          <app-multiple-choice-question
-            [statement]="question.statement"
-            [choices]="question.choices"
-            [points]="question.points"
-            [gid]="question.statement"
-            [correct_option]="question.correct_option"
-            [question_number]="$index"
-            (valueChange)="changeGrade($event)"
-          ></app-multiple-choice-question>
-          } @if( question.type == 'multipart' ){
-          <app-multipart-question
-            [statement]="question.statement"
-            [subquestions]="question.subquestions"
-            [points]="question.points"
-          ></app-multipart-question>
-          }
-        </app-card>
+      @for( question of questions; track question){
+      <app-card>
+        @if( question.type == 'single-choice' ){
+        <app-single-choice-question
+          [statement]="question.statement"
+          [choices]="question.choices"
+          [correct_option]="question.correct_option"
+          [points]="question.points"
+          [gid]="question.statement"
+          [question_number]="$index"
+          (valueChange)="changeGrade($event)"
+        ></app-single-choice-question>
+        } @if( question.type == 'multiple-choice' ){
+        <app-multiple-choice-question
+          [statement]="question.statement"
+          [choices]="question.choices"
+          [points]="question.points"
+          [gid]="question.statement"
+          [correct_option]="question.correct_option"
+          [question_number]="$index"
+          (valueChange)="changeGrade($event)"
+        ></app-multiple-choice-question>
+        } @if( question.type == 'multipart' ){
+        <app-multipart-question
+          [statement]="question.statement"
+          [subquestions]="question.subquestions"
+        ></app-multipart-question>
+        } @if( question.type == 'true_false' ){
+        <app-verdadero-falso
+          [questions]="question"
+          [question_number]="$index"
+          (valueChange)="changeGrade($event)"
+        ></app-verdadero-falso>
         }
-      </form>
+      </app-card>
+      }
     </div>
   </div>
 
@@ -83,7 +86,7 @@
   </div>
 </div>
 <div
-  class="d-flex justify-content-center align-content-center"
+  class="d-flex justify-content-center align-content-center pt-2"
   style="
     position: fixed;
     bottom: 1px;
@@ -95,7 +98,7 @@
   <button
     class="border rounded text-white fw-bold"
     style="background-color: #4a3aff; height: 30px"
-    (click)="(onSubmit)"
+    (click)="submitExam()"
   >
     submit
   </button>

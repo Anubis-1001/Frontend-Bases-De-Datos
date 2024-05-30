@@ -5,21 +5,21 @@ import { SingleChoiceQuestionComponent } from '../../components/single-choice-qu
 import { MultipleChoiceQuestionComponent } from '../../components/multiple-choice-question/multiple-choice-question.component';
 import { MultipartQuestionComponent } from '../../components/multipart-question/multipart-question.component';
 import { FormsModule } from '@angular/forms';
+import { TruFalseQuestionComponent } from '../../components/tru-false-question/tru-false-question.component';
+import { VerdaderoFalsoComponent } from '../../components/verdadero-falso/verdadero-falso.component';
+import { True_False } from '../../dtos/TiposPreguntas/True_False';
+import { SimpleQuestion } from '../../dtos/TiposPreguntas/SimpleQuestion';
+import { MultipartQuestion } from '../../dtos/TiposPreguntas/Multipart';
+import { ExamService } from '../../services/http-services/exam.service';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import {
+  HttpClientInMemoryWebApiModule,
+  InMemoryWebApiModule,
+} from 'angular-in-memory-web-api';
+import { InMemoryDataService } from '../../services/http-services/in-memory-data.service';
+import { MensajeDTO } from '../../dtos/GlobalDTO/MensajeDTO';
 
-type SimpleQuestion = {
-  type: 'single-choice' | 'multiple-choice';
-  statement: string;
-  choices: string[];
-  correct_option: any;
-  points: number;
-};
-
-type MultipartQuestion = {
-  type: 'multipart';
-  statement: string;
-  subquestions: SimpleQuestion[];
-  points: number;
-};
 @Component({
   selector: 'app-exam',
   standalone: true,
@@ -29,100 +29,52 @@ type MultipartQuestion = {
     SingleChoiceQuestionComponent,
     MultipleChoiceQuestionComponent,
     MultipartQuestionComponent,
+    VerdaderoFalsoComponent,
     FormsModule,
+    HttpClientModule,
+    InMemoryWebApiModule,
   ],
   templateUrl: './exam.component.html',
   styleUrl: './exam.component.css',
 })
 export class ExamComponent implements OnInit {
-  @Input('exam_title') exam_title!: string;
-  @Input('time') time: number = 3600;
+  constructor(
+    private examenService: ExamService,
+    private route: ActivatedRoute
+  ) {}
+
+  exam_title!: string;
+  time!: number;
+  questions!: (SimpleQuestion | MultipartQuestion | True_False)[];
+  exam_id!: number;
+
   points: number = 0;
 
   checked: boolean[] = [];
-  initialTime: number = this.time;
+  initialTime!: number;
   timeString: string = '';
   gradesStyle!: string;
 
-  questions: (SimpleQuestion | MultipartQuestion)[] = [
-    {
-      type: 'single-choice',
-      statement: 'ip del DNS de Google',
-      choices: ['8.8.8.8', '192.168.0.1', '0.0.0.0'],
-      correct_option: 1,
-      points: 20,
-    },
-    {
-      type: 'multiple-choice',
-      statement: 'herramientas en Devops',
-      choices: ['Docker', 'Jenkins', 'React Native', 'Postgresql'],
-      correct_option: [0, 1],
-      points: 20,
-    },
-    {
-      type: 'multipart',
-      statement: 'responda los siguientes conceptos',
-      points: 20,
-      subquestions: [
-        {
-          type: 'multiple-choice',
-          statement: 'hello world',
-          choices: ['1', '2', '3', '4'],
-          correct_option: [1, 2],
-          points: 50,
-        },
-        {
-          type: 'single-choice',
-          statement: 'what is an ip address',
-          choices: [
-            'a house address',
-            'a host address',
-            'a route',
-            'a ping message',
-          ],
-          correct_option: 1,
-          points: 20,
-        },
-      ],
-    },
-    {
-      type: 'single-choice',
-      statement: 'what is an ip address',
-      choices: [
-        'a house address',
-        'a host address',
-        'a route',
-        'a ping message',
-      ],
-      correct_option: 1,
-      points: 20,
-    },
-    {
-      type: 'single-choice',
-      statement: 'what stands DNS for?',
-      choices: [
-        'Direct Network Service',
-        'Dandified Netwrok Service',
-        'Difussion Net System',
-        'Domain Name System',
-      ],
-      correct_option: 3,
-      points: 20,
-    },
-  ];
-
   ngOnInit(): void {
-    if (!this.exam_title) {
-      this.exam_title = 'ip address quizwez';
-    }
+    this.route.paramMap.subscribe((params) => {
+      this.exam_id = parseInt(params.get('id')!);
 
-    for (let question of this.questions) {
-      this.checked.push(true);
-    }
-
-    setInterval(() => {
-      this.updateTime();
-    }, 1000);
+      this.examenService
+        .getExamByID(this.exam_id)
+        .subscribe((res: MensajeDTO) => {
+          console.log(`res is ${JSON.stringify(res)}`);
+          this.time = parseInt(res.respuesta.time);
+          this.initialTime = this.time;
+          this.exam_title = res.respuesta.title;
+          this.questions = res.respuesta.questions;
+          setInterval(() => {
+            this.updateTime();
+          }, 1000);
+          for (let question of this.questions) {
+            this.checked.push(true);
+          }
+        });
+    });
   }
 
   updateTime() {
@@ -173,8 +125,16 @@ export class ExamComponent implements OnInit {
     return path;
   }
 
-  onSubmit() {
-    console.log('fsdf');
+  submitExam() {
+    this.examenService
+      .postExam({
+        id_estudiante: 1,
+        id_examen: this.exam_id,
+        nota: this.points,
+      })
+      .subscribe((res) =>
+        console.log(`response from server is ${JSON.stringify(res)}`)
+      );
   }
 
   changeGrade(responseData: { points: number; index: number }) {
